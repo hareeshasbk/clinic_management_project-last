@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Clinic Management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2dfdb 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .about-container {
+            padding: 5rem 10%;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .about-container h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-container h1::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: #3498db;
+            bottom: -10px;
+            left: 25%;
+            transform: scaleX(0);
+            animation: underline 1s ease-in-out forwards 0.5s;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #576574;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            color: #34495e;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            animation: fadeIn 1s ease-in 0.5s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes underline {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.3s; }
+        .feature-card:nth-child(2) { animation-delay: 0.6s; }
+        .feature-card:nth-child(3) { animation-delay: 0.9s; }
+        .feature-card:nth-child(4) { animation-delay: 1.2s; }
+    </style>
+</head>
+<body>
+    <div class="about-container">
+        <h1>About Us</h1>
+        <p class="intro-text">Welcome to the Clinic Management System! Our innovative platform is designed to transform healthcare operations, making medical care more accessible and efficient for everyone.</p>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-hospital-user"></i>
+                <h3>Smart Scheduling</h3>
+                <p>Efficient appointment management system that saves time for both healthcare providers and patients.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Secure Access</h3>
+                <p>Advanced security measures to protect sensitive medical information and ensure privacy.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-file-medical"></i>
+                <h3>Medical Records</h3>
+                <p>Comprehensive digital record management system for better patient care and tracking.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-users"></i>
+                <h3>User-Friendly</h3>
+                <p>Intuitive interface designed for healthcare professionals and patients of all technical backgrounds.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

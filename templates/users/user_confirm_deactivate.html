@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content-section" style="max-width: 360px; margin: auto; padding: 40px 30px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center;">
+    <h1 style="font-size: 24px; font-weight: bold;">Deactivate User</h1>
+    <p>Are you sure you want to deactivate user <strong>{{ user.username }}</strong>?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-outline-danger" type="submit" style="width: 60%; padding: 10px; font-size: 16px; margin-bottom: 10px;">Confirm Deactivate</button>
+        <a class="btn btn-outline-success" href="{% url 'user_list' %}" style="width: 50%; padding: 10px; font-size: 16px;">Cancel</a>
+    </form>
+</div>
+{% endblock content %}

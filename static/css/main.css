@@ -1,0 +1,564 @@
+:root {
+    --primary-color: #4285f4; /* Theme color */
+    --danger-color: #dc3545; /* Danger color */
+    --success-color: #28a745; /* Success color */
+    --secondary-color: #6c757d; /* Secondary color */
+}
+
+body {
+    background: #e0f7fa; /* Light cyan background */
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 200;
+    font-family: Arial, sans-serif;
+}
+
+.content-section {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+/* Sidebar Styles */
+.content-section1 {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 80px; /* Adjust this value based on your navbar height */
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.sidebar-menu {
+    margin-top: 1rem;
+}
+
+/* Add custom scrollbar */
+.sticky-top::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sticky-top::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sticky-top::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.sticky-top::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Apply this to the sidebar only */
+.col-md-4 .content-section1 {
+    overflow: auto;      /* Enable vertical scrolling when content overflows */
+    max-height: 80vh;   /* Limit the maximum height to 80% of the viewport height */
+}
+
+
+.col-md-4 .content-section1 h3 {
+    text-align: left; /* Align the heading to the left */
+}
+
+.col-md-4 .content-section1 p {
+    text-align: left; /* Align the paragraph to the left */
+}
+
+.col-md-4 .content-section1 .list-group {
+    margin-bottom: 0; /* remove bottom margin */
+}
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .col-md-4 .content-section1 {
+        max-height: 100vh; /* Reduce height on smaller screens */
+    }
+}
+
+
+.article-title {
+    color: #00796b; /* Dark teal color */
+}
+
+a.article-title:hover {
+    color: #004d40; /* Darker teal color */
+    text-decoration: none;
+}
+
+.article-content {
+    white-space: pre-line;
+}
+
+.article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+}
+
+.article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #b2dfdb; /* Light teal border */
+}
+
+.article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.account-heading {
+    font-size: 2.5rem;
+}
+
+.bg-steel {
+    background-color: #00796b; /* Dark teal background */
+}
+
+.site-header .navbar-nav .nav-link {
+    color: #b2dfdb; /* Light teal color */
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-box {
+    background: #f9f9f9;
+    padding: 40px 60px;
+    border: 1px solid #000000; /* Black border */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 1s ease-in-out; /* Add animation */
+    
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.login-box h2 {
+    margin-bottom: 10px;
+    color: #090909; /* Dark teal color */
+}
+
+.login-box p {
+    margin-bottom: 30px;
+    color: #888888;
+}
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.signup-box {
+    background: #ffffff;
+    padding: 40px 60px;
+    border: 1px solid #000000; /* Black border */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    animation: fadeIn 1s ease-in-out; /* Add animation */
+}
+
+.signup-box h2 {
+    margin-bottom: 10px;
+    color: #00796b; /* Dark teal color */
+}
+
+.signup-box p {
+    margin-bottom: 30px;
+    color: #888888;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #b2dfdb; /* Light teal border */
+    border-radius: 4px;
+}
+
+.login-button {
+    background: #00796b; /* Dark teal background */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.login-button:hover {
+    background: #004d40; /* Darker teal background */
+}
+
+.signup-button {
+    background: #00796b; /* Dark teal background */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.signup-button:hover {
+    background: #004d40; /* Darker teal background */
+}
+
+.logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.logout-box {
+    background: #ffffff;
+    padding: 40px 60px;
+    border: 1px solid #b2dfdb; /* Light teal border */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 1s ease-in-out; /* Add animation */
+}
+
+.logout-box h2 {
+    margin-bottom: 10px;
+    color: #00796b; /* Dark teal color */
+}
+
+.logout-box p {
+    margin-bottom: 30px;
+    color: #888888;
+}
+
+.logout-button {
+    background: #d9534f; /* Bootstrap danger color */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.logout-button:hover {
+    background: #c9302c; /* Darker danger color */
+}
+
+.password-reset-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.password-reset-box {
+    background: #ffffff;
+    padding: 40px 60px;
+    border: 1px solid #b2dfdb; /* Light teal border */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 1s ease-in-out; /* Add animation */
+}
+
+.password-reset-box h2 {
+    margin-bottom: 10px;
+    color: #00796b; /* Dark teal color */
+}
+
+.password-reset-box p {
+    margin-bottom: 30px;
+    color: #888888;
+}
+
+.password-reset-button {
+    background: #00796b; /* Dark teal background */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 80%;
+}
+
+.password-reset-button:hover {
+    background: #004d40; /* Darker teal background */
+}
+
+.confirm-delete-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.confirm-delete-box {
+    background: #ffffff;
+    padding: 40px 60px;
+    border: 1px solid #b2dfdb; /* Light teal border */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    animation: fadeIn 1s ease-in-out; /* Add animation */
+}
+
+.confirm-delete-box h2 {
+    margin-bottom: 10px;
+    color: #00796b; /* Dark teal color */
+}
+
+.confirm-delete-box p {
+    margin-bottom: 30px;
+    color: #888888;
+}
+
+.confirm-delete-button {
+    background: #d9534f; /* Bootstrap danger color */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 50%;
+}
+
+.confirm-delete-button:hover {
+    background: #c9302c; /* Darker danger color */
+}
+
+.confirm-activate-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.confirm-activate-box {
+    background: #ffffff;
+    padding: 40px 60px;
+    border: 1px solid #b2dfdb; /* Light teal border */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 1s ease-in-out; /* Add animation */
+}
+
+.confirm-activate-box h2 {
+    margin-bottom: 10px;
+    color: #00796b; /* Dark teal color */
+}
+
+.confirm-activate-box p {
+    margin-bottom: 30px;
+    color: #888888;
+}
+
+.confirm-activate-button {
+    background: var(--success-color); /* Success color */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* .confirm-activate-button:hover {
+    background: darken(var(--success-color), 10%);
+} */
+
+.btn-secondary {
+    background: var(--secondary-color); /* Secondary color */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.btn-secondary:hover {
+    background: #5a6268; /* Darker secondary color */
+}
+
+.btn-secondary {
+    background: #676567; /* Dark teal background */
+    color: 
+    #f0f3f3;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 25%;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover {
+    background: #5a6268; /* Darker secondary color */
+}
+
+.help-links {
+    margin-top: 20px;
+}
+
+.help-links a {
+    color: #00796b; /* Dark teal color */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.help-links a:hover {
+    text-decoration: underline;
+}
+
+.btn-primary {
+    background: #3251c1; /* Dark teal background */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+}
+
+.invalid-feedback {
+  color: #d9534f; /* Bootstrap danger color */
+}
+
+.form-text {
+  color: #888888;
+}
+
+.signupadmin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.signupadmin-box {
+  background: #ffffff;
+  padding: 40px 60px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 100%;
+  max-width: 600px;
+  animation: fadeIn 1s ease-in-out; /* Add animation */
+}
+
+.signupadmin-box h2 {
+  margin-bottom: 10px;
+  color: #00796b; /* Dark teal color */
+}
+
+.signupadmin-box p {
+  margin-bottom: 30px;
+  color: #888888;
+}
+
+.btn-outline-danger {
+    background-color: var(--danger-color);
+    color: #fff;
+    border: none;
+}
+
+/* .btn-outline-danger:hover {
+    background-color: darken(var(--danger-color), 10%);
+} */
+
+.btn-outline-secondary {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+}
+
+.btn-outline-secondary:hover {
+    background-color: darken(var(--secondary-color), 10%);
+}
+

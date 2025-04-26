@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Breadcrumb -->
+    <!-- <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% if user.role == 'admin' %}
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Home</a></li>
+            {% elif user.role == 'doctor' %}
+                <li class="breadcrumb-item"><a href="{% url 'doctor_dashboard' %}">Home</a></li>
+            {% elif user.role == 'patient' %}
+                <li class="breadcrumb-item"><a href="{% url 'patient_dashboard' %}">Home</a></li>
+            {% elif user.role == 'receptionist' %}
+                <li class="breadcrumb-item"><a href="{% url 'receptionist_dashboard' %}">Home</a></li>
+            {% endif %}
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+    </nav> -->
+
+    <!-- Welcome Card --><br><br><br><br><br><br><br><br><br>
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-primary text-white">
+            <h1 class="h3 mb-0">Doctor Dashboard</h1>
+        </div>
+        <div class="card-body">
+            <h4 class="text-muted mb-4">Welcome, Dr. {{ request.user.first_name }} {{ request.user.last_name }}!</h4>
+            
+            <!-- Statistics Cards -->
+            <div class="row">
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Patients</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_patients }}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Prescriptions</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_prescriptions }}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-prescription fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Most Prescribed</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ most_prescribed_medication|default:"None" }}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-pills fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointments Table Card -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Upcoming Appointments</h6>
+                    <!-- <a href="{% url 'appointments:appointment_create' %}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus fa-sm"></i> New Appointment
+                    </a> -->
+                </div>
+                <div class="card-body">
+                    {% if appointments %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Reason</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in appointments %}
+                                <tr>
+                                    <td>{{ appointment.patient.username }}</td>
+                                    <td>{{ appointment.date }}</td>
+                                    <td>{{ appointment.time }}</td>
+                                    <td>{{ appointment.reason }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="{% url 'appointments:appointment_edit' appointment.pk %}" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('{{ appointment.pk }}')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-calendar-check fa-3x text-muted mb-3"></i>
+                        <p class="text-muted mb-0">No upcoming appointments</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Quick Actions and Recent Prescriptions -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Quick Actions</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'medications:prescription_create' %}" class="btn btn-success btn-icon-split mb-2">
+                                    <span class="icon"><i class="fas fa-prescription-bottle-alt"></i></span>
+                                    <span class="text">New Prescription</span>
+                                </a>
+                                <a href="{% url 'medications:medication_create' %}" class="btn btn-success btn-icon-split mb-2">
+                                    <span class="icon"><i class="fas fa-pills"></i></span>
+                                    <span class="text">Add Medication</span>
+                                </a>
+                                <a href="{% url 'medications:patient_list' %}" class="btn btn-primary btn-icon-split mb-2">
+                                    <span class="icon"><i class="fas fa-user-injured"></i></span>
+                                    <span class="text">View Patients</span>
+                                </a>
+                                <a href="{% url 'medications:medication_list' %}" class="btn btn-primary btn-icon-split mb-2">
+                                    <span class="icon"><i class="fas fa-list-alt"></i></span>
+                                    <span class="text">View Medications</span>
+                                </a>
+                                <a href="{% url 'medications:prescription_list' %}" class="btn btn-primary btn-icon-split">
+                                    <span class="icon"><i class="fas fa-clipboard-list"></i></span>
+                                    <span class="text">View Prescriptions</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Recent Prescriptions</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                {% for prescription in recent_prescriptions %}
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">{{ prescription.medication.name }}</h6>
+                                        <small>{{ prescription.date_prescribed }}</small>
+                                    </div>
+                                    <p class="mb-1">Patient: {{ prescription.patient.username }}</p>
+                                </div>
+                                {% empty %}
+                                <div class="text-center py-3">
+                                    <i class="fas fa-prescription-bottle fa-2x text-muted mb-2"></i>
+                                    <p class="text-muted mb-0">No recent prescriptions</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<style>
+    .card {
+        transition: transform 0.2s;
+        border-radius: 10px;
+    }
+    
+    .border-left-primary {
+        border-left: 4px solid #4e73df;
+    }
+    
+    .border-left-success {
+        border-left: 4px solid #1cc88a;
+    }
+    
+    .border-left-info {
+        border-left: 4px solid #36b9cc;
+    }
+    
+    .card-header {
+        background-color: #f8f9fc;
+        border-bottom: 1px solid #e3e6f0;
+    }
+    
+    .btn-icon-split {
+        padding: 0;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: stretch;
+        justify-content: center;
+    }
+    
+    .btn-icon-split .icon {
+        background: rgba(0,0,0,.15);
+        padding: 0.75rem;
+        display: inline-block;
+        align-items: center;
+    }
+    
+    .btn-icon-split .text {
+        display: inline-block;
+        padding: 0.75rem;
+        flex-grow: 1;
+        text-align: left;
+    }
+    
+    .list-group-item {
+        transition: background-color 0.2s;
+    }
+    
+    .list-group-item:hover {
+        background-color: #f8f9fc;
+    }
+    
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fc;
+    }
+    
+    .text-xs {
+        font-size: .7rem;
+    }
+    
+    .font-weight-bold {
+        font-weight: 700!important;
+    }
+    
+    .shadow {
+        box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+    }
+</style>
+
+<script>
+function confirmDelete(appointmentId) {
+    if (confirm('Are you sure you want to cancel this appointment?')) {
+        window.location.href = `/appointments/${appointmentId}/delete/`;
+    }
+}
+</script>
+{% endblock %}

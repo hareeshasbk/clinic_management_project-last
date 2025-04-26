@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="confirm-delete-container">
+    <div class="confirm-delete-box">
+        <h2>Confirm Delete</h2>
+        <p>Are you sure you want to delete the appointment for {{ appointment.patient.email }} with {{ appointment.doctor.email }} on {{ appointment.date }} at {{ appointment.time }}?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger" href="{% url 'user_list' %}" style="width: 30%; padding: 10px; font-size: 16px;">Confirm Delete</button><br>
+            <a href="{% url 'appointments:appointment_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

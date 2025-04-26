@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="signup-container">
+    <div class="signup-box">
+        <h2>Create Admin User</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <!-- <legend class="border-bottom mb-4">Create a New Admin User</legend> -->
+                {% for field in form %}
+                    <div class="input-group">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in field.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <div class="form-group" style="text-align: center;">
+                <button class="signup-button" type="submit">Create User</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

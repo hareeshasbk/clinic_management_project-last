@@ -1,0 +1,26 @@
+# # users/rbac_config.py
+
+# PERMISSIONS = {
+#     'user_list': ['admin'],
+#     'user_edit': ['admin'],
+#     'create_admin_user': ['admin'],
+#     'user_delete': ['admin'],
+#     'user_deactivate': ['admin'],
+#     'user_activate': ['admin'],
+#     'admin_dashboard': ['admin'],
+#     'doctor_dashboard': ['doctor'],
+#     'patient_dashboard': ['patient'],
+#     'receptionist_dashboard': ['receptionist'],
+#     'appointment_list': ['receptionist', 'admin'],
+#     'appointment_create': ['receptionist', 'admin'],
+#     'appointment_edit': ['receptionist', 'admin'],
+#     'appointment_delete': ['receptionist', 'admin'],
+#     'medication_list': ['admin'],
+#     'medication_create': ['admin'],
+#     'medication_edit': ['admin'],
+#     'medication_delete': ['admin'],
+#     'prescription_create': ['doctor'],
+#     'prescription_list': ['doctor', 'admin'],
+#     'patient_list': ['doctor'],
+#     'patient_detail': ['doctor'],
+# }

@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+
+    <title>Clinic Management System</title>
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">  <!-- Added container here -->
+          {% if user.is_authenticated %}
+            {% if user.role == 'admin' %}
+                <a class="navbar-brand mr-4" href="{% url 'admin_dashboard' %}">Clinic Management</a>
+            {% elif user.role == 'doctor' %}
+                <a class="navbar-brand mr-4" href="{% url 'doctor_dashboard' %}">Clinic Management</a>
+            {% elif user.role == 'patient' %}
+                <a class="navbar-brand mr-4" href="{% url 'patient_dashboard' %}">Clinic Management</a>
+            {% elif user.role == 'receptionist' %}
+                <a class="navbar-brand mr-4" href="{% url 'receptionist_dashboard' %}">Clinic Management</a>
+            {% endif %}
+          {% else %}
+            <a class="navbar-brand mr-4" href="{% url 'home' %}">Clinic Management</a>
+          {% endif %}
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">  <!-- Removed redundant id="navbarNav" -->
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                {% if user.is_authenticated %}
+                    {% if user.role == 'admin' %}
+                        <a class="nav-link" href="{% url 'admin_dashboard' %}">Home</a>
+                    {% elif user.role == 'doctor' %}
+                        <a class="nav-link" href="{% url 'doctor_dashboard' %}">Home</a>
+                    {% elif user.role == 'patient' %}
+                        <a class="nav-link" href="{% url 'patient_dashboard' %}">Home</a>
+                    {% elif user.role == 'receptionist' %}
+                        <a class="nav-link" href="{% url 'receptionist_dashboard' %}">Home</a>
+                    {% endif %}
+                {% else %}
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                {% endif %}
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li> -->
+
+            </ul>
+        <!-- Navbar Right Side -->
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a class="nav-item nav-link" href="{% url 'account_login' %}">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'account_signup' %}">Register</a>
+                {% endif %}
+              </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+          <div class="content-section1 sticky-top">
+            <h3>Our Sidebar</h3>
+            <div class='text-muted'>
+              <ul class="list-group sidebar-menu">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialize all date/time pickers
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr(".datepicker", {
+                dateFormat: "Y-m-d",
+                minDate: "today"
+            });
+
+            flatpickr(".timepicker", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+                minTime: "09:00",
+                maxTime: "18:00"
+            });
+        });
+    </script>
+</body>
+</html>

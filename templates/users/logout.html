@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="logout-container">
+    <div class="logout-box">
+        <h2>Log out</h2>
+        <p>Are you sure you want to sign out?</p>
+        <form method="POST" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            <button class="btn btn-outline-danger" href="{% url 'user_list' %}" style="width: 50%; padding: 10px; font-size: 16px;">Log out</button>
+        </form>
+        <div class="help-links">
+            <a class="btn btn-outline-success" href="{% url 'user_list' %}" style="width: 50%; padding: 10px; font-size: 16px;">Cancel</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

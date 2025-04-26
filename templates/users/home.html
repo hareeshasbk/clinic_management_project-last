@@ -1,0 +1,359 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, #e0f7fa 0%, #b2dfdb 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+        background: linear-gradient(90deg, #004d40 0%, #00796b 100%);
+        padding: 1rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .logo {
+        color: white;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 2rem;
+        font-weight: 500;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+        margin-top: 80px;
+        padding: 4rem 5%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .hero-content {
+        padding-right: 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+        color: #576574;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: linear-gradient(90deg, #004d40 0%, #00796b 100%);
+        color: white;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: transform 0.3s ease;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Slider Styles */
+    .slider-container {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .swiper {
+        width: 100%;
+        height: 400px;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    /* Features Section */
+    .features {
+        padding: 5rem 5%;
+        background: white;
+    }
+
+    .features-title {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .features-title h2 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 0 5%;
+    }
+
+    .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+        text-align: center;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+        color: #00796b;
+        margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+
+    .feature-card p {
+        color: #576574;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Footer Styles */
+    .footer {
+        background: linear-gradient(90deg, #004d40 0%, #00796b 100%);
+        color: white;
+        padding: 3rem 5%;
+        margin-top: auto;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+
+    .footer-column h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    .footer-column h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background: white;
+    }
+
+    .footer-column ul {
+        list-style: none;
+    }
+
+    .footer-column ul li {
+        margin-bottom: 0.8rem;
+    }
+
+    .footer-column ul li a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-column ul li a:hover {
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            grid-template-columns: 1fr;
+            text-align: center;
+            padding: 2rem 5%;
+        }
+
+        .hero-content {
+            padding-right: 0;
+        }
+
+        .nav-links a {
+            margin-left: 1rem;
+            font-size: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Clinic Management</div>
+        <nav class="nav-links">
+            <a href="{% url 'account_signup' %}">Register</a>
+            <a href="{% url 'account_login' %}">Login</a>
+            <a href="{% url 'about_us' %}">About Us</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Modern Healthcare Management Solution</h1>
+            <p>Experience seamless clinic management with our comprehensive system designed for healthcare professionals and patients alike.</p>
+            <a href="{% url 'account_signup' %}" class="cta-button">Get Started</a>
+        </div>
+        <div class="slider-container">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="{% static 'images/clinic-image1.jpg' %}" alt="Clinic Image 1"></div>
+                    <div class="swiper-slide"><img src="{% static 'images/clinic-image2.gif' %}" alt="Clinic Image 2"></div>
+                    <div class="swiper-slide"><img src="{% static 'images/clinic-image3.gif' %}" alt="Clinic Image 3"></div>
+                    <div class="swiper-slide"><img src="{% static 'images/clinic-image4.gif' %}" alt="Clinic Image 4"></div>
+                    <div class="swiper-slide"><img src="{% static 'images/clinic-image5.jpg' %}" alt="Clinic Image 5"></div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="features-title">
+            <h2>Our Features</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-calendar-alt feature-icon"></i>
+                <h3>Smart Scheduling</h3>
+                <p>Efficiently manage appointments with our intelligent scheduling system</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-lock feature-icon"></i>
+                <h3>Secure Access</h3>
+                <p>Enhanced security with two-factor authentication and data encryption</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-notes-medical feature-icon"></i>
+                <h3>Medical Records</h3>
+                <p>Digital storage and easy access to patient medical histories</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bell feature-icon"></i>
+                <h3>Smart Notifications</h3>
+                <p>Automated reminders and updates for appointments and medications</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><a href="mailto:support@clinicmanagement.com"><i class="fas fa-envelope"></i> support@clinicmanagement.com</a></li>
+                    <li><a href="tel:+918050977211"><i class="fas fa-phone"></i> +91 80509 77211</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.mySwiper', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            }
+        });
+    </script>
+</body>
+</html>

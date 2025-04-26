@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="confirm-activate-container">
+    <div class="confirm-activate-box">
+        <h2>Activate User</h2>
+        <p>Are you sure you want to activate user <strong>{{ user.username }}</strong>?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button class="btn btn-outline-success" href="{% url 'user_list' %}" style="width: 50%; padding: 10px; font-size: 16px;">Confirm Activate</button><br><br>
+            <a class="btn btn-outline-primary" href="{% url 'user_list' %}">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}

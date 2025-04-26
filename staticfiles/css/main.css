@@ -1,0 +1,364 @@
+:root {
+    --primary-color: #4285f4;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --secondary-color: #6c757d;
+    --teal-color: #00796b; /* Added teal color */
+    --teal-dark-color: #004d40; /* Added darker teal color */
+    --light-teal-color: #b2dfdb; /* Added light teal color */
+    --text-color: #333333;
+    --light-background: #e0f7fa;
+    --white-color: #fff;
+    --box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+body {
+    background: var(--light-background);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Changed to min-height */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* General Content Section */
+.content-section {
+    background-color: var(--white-color);
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    margin-bottom: 20px; /* Add some spacing below */
+}
+
+/* Sidebar Styles */
+.content-section1 {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 80px; /* Adjust this value based on your navbar height */
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.sidebar-menu {
+    margin-top: 1rem;
+}
+
+/* Add custom scrollbar */
+.sticky-top::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sticky-top::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sticky-top::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.sticky-top::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Apply this to the sidebar only */
+.col-md-4 .content-section1 {
+    overflow: auto;      /* Enable vertical scrolling when content overflows */
+    max-height: 80vh;   /* Limit the maximum height to 80% of the viewport height */
+}
+
+
+.col-md-4 .content-section1 h3 {
+    text-align: left; /* Align the heading to the left */
+}
+
+.col-md-4 .content-section1 p {
+    text-align: left; /* Align the paragraph to the left */
+}
+
+.col-md-4 .content-section1 .list-group {
+    margin-bottom: 0; /* remove bottom margin */
+}
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .col-md-4 .content-section1 {
+        max-height: 100vh; /* Reduce height on smaller screens */
+    }
+}
+
+/* Article Styles */
+.article-title {
+    color: var(--teal-color);
+}
+
+a.article-title:hover {
+    color: var(--teal-dark-color);
+    text-decoration: none;
+}
+
+.article-content {
+    white-space: pre-line;
+}
+
+.article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+    border-radius: 50%; /* Make it a circle */
+    object-fit: cover; /* Prevent image distortion */
+}
+
+.article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--light-teal-color);
+}
+
+.article-metadata a:hover {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+/* Account Styles */
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+    border-radius: 50%; /* Make it a circle */
+    object-fit: cover; /* Prevent image distortion */
+}
+
+.account-heading {
+    font-size: 2.5rem;
+}
+
+/* Header and Navigation */
+.bg-steel {
+    background-color: var(--teal-color);
+}
+
+.site-header .navbar-nav .nav-link {
+    color: var(--light-teal-color);
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: var(--white-color);
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+
+/* Login and Signup Containers */
+.login-container,
+.signup-container,
+.logout-container,
+.password-reset-container,
+.confirm-delete-container,
+.confirm-activate-container,
+.signupadmin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Use min-height for full height */
+    width: 100%;
+    padding: 20px; /* Add padding to prevent content from touching the edges */
+    box-sizing: border-box; /* Include padding in width/height */
+}
+
+/* Login and Signup Boxes */
+.login-box,
+.signup-box,
+.logout-box,
+.password-reset-box,
+.confirm-delete-box,
+.confirm-activate-box,
+.signupadmin-box {
+    background: var(--white-color);
+    padding: 40px 60px;
+    border: 1px solid #ccc; /* Use a more subtle border */
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    width: 100%;
+    max-width: 500px; /* Adjusted max-width for better responsiveness */
+    animation: fadeIn 0.5s ease-in-out; /* Reduced animation duration */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.login-box h2,
+.signup-box h2,
+.logout-box h2,
+.password-reset-box h2,
+.confirm-delete-box h2,
+.confirm-activate-box h2,
+.signupadmin-box h2 {
+    margin-bottom: 10px;
+    color: var(--teal-color);
+}
+
+.login-box p,
+.signup-box p,
+.logout-box p,
+.password-reset-box p,
+.confirm-delete-box p,
+.confirm-activate-box p,
+.signupadmin-box p {
+    margin-bottom: 30px;
+    color: #777; /* Slightly darker gray */
+}
+
+/* Input Styles */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-weight: bold; /* Make labels a bit bolder */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px; /* Increased padding */
+    border: 1px solid var(--light-teal-color);
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding is included in width */
+    font-size: 1rem; /* Set a reasonable font size */
+}
+
+.input-group input:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: var(--primary-color); /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.5); /* Add a subtle shadow */
+}
+
+/* Button Styles */
+.login-button,
+.signup-button,
+.logout-button,
+.password-reset-button,
+.confirm-delete-button,
+.confirm-activate-button,
+.btn-primary,
+.btn-secondary {
+    background: var(--teal-color);
+    color: var(--white-color);
+    padding: 12px 24px; /* Adjusted padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.2s ease; /* Smooth transition */
+}
+
+.login-button:hover,
+.signup-button:hover,
+.logout-button:hover,
+.password-reset-button:hover,
+.confirm-delete-button:hover,
+.confirm-activate-button:hover,
+.btn-primary:hover,
+.btn-secondary:hover {
+    background: var(--teal-dark-color);
+}
+
+.logout-button, .confirm-delete-button, .btn-outline-danger {
+    background: var(--danger-color);
+}
+
+.logout-button:hover, .confirm-delete-button:hover {
+  background: darken(var(--danger-color), 10%);
+}
+
+.btn-secondary {
+    background: var(--secondary-color); /* Secondary color */
+    color: var(--white-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 25%;
+    margin-top: 10px;
+}
+
+/* Help Links */
+.help-links {
+    margin-top: 20px;
+}
+
+.help-links a {
+    color: var(--teal-color);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.help-links a:hover {
+    text-decoration: underline;
+}
+
+/* Feedback and Text Styles */
+.invalid-feedback {
+    color: var(--danger-color);
+    display: block; /* Ensure it takes up space */
+    margin-top: 5px;
+}
+
+.form-text {
+    color: #777;
+    font-size: 0.8rem;
+}
+
+/* Outline Button Styles */
+.btn-outline-danger,
+.btn-outline-secondary {
+    background-color: transparent;
+    border: 1px solid;
+    color: var(--text-color);
+    transition: all 0.2s ease;
+}
+
+/* .btn-outline-danger:hover,
+.btn-outline-secondary:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+} */
+
+.btn-primary {
+    background: #3251c1; /* Dark teal background */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+}
+
+

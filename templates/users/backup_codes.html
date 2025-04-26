@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Backup Codes</h2>
+    <div class="alert alert-warning">
+        <p>Please save these backup codes in a secure location. Each code can only be used once. Once you navigate away from this page, you won't be able to see these codes again.</p>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for code in backup_codes %}
+                            <li class="list-group-item">{{ code.code }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-3">
+                <a href="{% url 'home' %}" class="btn btn-primary">I've saved these codes</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

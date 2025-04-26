@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Create Prescription for {{ patient.username }}</h1>
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Prescription Information</legend>
+             <div class="form-group">
+                <label class="form-control-label">Patient</label>
+                <select name="patient" class="form-control">
+                    <option value="{{ patient.id }}">{{patient.username}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Medication</label>
+                <select name="medication" class="form-control">
+                    {% for medication in form.fields.medication.queryset %}
+                    <option value="{{ medication.id }}">{{ medication.name }} - {{ medication.dosage }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Dosage</label>
+                {{ form.dosage }}
+                 {% if form.errors.dosage %}
+                <div class="alert alert-danger">
+                     {{ form.errors.dosage|striptags  }}
+                </div>
+                {% endif %}
+            </div>
+                <div class="form-group">
+                <label class="form-control-label">Instructions</label>
+                {{ form.instructions }}
+                 {% if form.errors.instructions %}
+                <div class="alert alert-danger">
+                     {{ form.errors.instructions|striptags  }}
+                </div>
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Create Prescription</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

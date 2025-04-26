@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Two-Factor Authentication Status</h2>
+            <p>Username: {{ username }}</p>
+            <p>2FA Status: 
+                {% if is_2fa_enabled %}
+                    <span class="badge bg-success">Enabled</span>
+                {% else %}
+                    <span class="badge bg-danger">Disabled</span>
+                {% endif %}
+            </p>
+            
+            {% if is_2fa_enabled %}
+                <form method="post" action="{% url 'two_factor_disable' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Disable 2FA</button>
+                </form>
+            {% else %}
+                <a href="{% url 'two_factor_setup' %}" class="btn btn-primary">Enable 2FA</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
