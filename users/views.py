@@ -114,7 +114,7 @@ def home(request):
     if redirect_url:
         return redirect(redirect_url)
     
-    return render(request, 'users/home.html')
+    return render(request, 'users/index.html')
 
 @login_required
 @allowed_roles(roles=['admin'])
